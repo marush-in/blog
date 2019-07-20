@@ -1,0 +1,46 @@
+version: "3"
+
+volumes:
+  pgdata:
+  static:
+  media:
+
+services:
+  blog-app:
+    build:
+      context: .
+    image: blog-app
+    container_name: blog-app
+    entrypoint: dockerize -timeout 60s -wait tcp://blog-postgres:5432
+    command: '/var/www/app/manage.py runserver 0.0.0.0:8000'
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/var/www/app
+      - static:/var/www/static
+      - media:/var/www/media
+    environment:
+      DEBUG: '${DEBUG}'
+      PYTHONDONTWRITEBYTECODE: 1
+      # Database
+      DATABASE_HOST:     blog-postgres
+      DATABASE_NAME:     ${DATABASE_NAME}
+      DATABASE_USER:     ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT:     ${DATABASE_PORT}
+    depends_on: 
+      - blog-postgres
+    restart: always
+
+  blog-postgres:
+    image: postgres:11.0
+    container_name: blog-postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB:       ${DATABASE_NAME}
+      POSTGRES_USER:     ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    restart: always
