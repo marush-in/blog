@@ -7,15 +7,15 @@ MIGRATE="${RUN_APP} ./manage.py migrate"
 UP_APP="docker-compose up -d"
 DOWN_APP="docker-compose down"
 
-case $1 in
+case "$1" in
   "init")
     if [ ! -e '.env' ]; then
       cp .env.sample .env
     fi
     docker-compose down -v
-    docker-compose rm blog-pgdate | true
-    docker-compose rm blog-static | true
-    docker-compose rm blog-media | true
+    docker volume rm blog-pgdate | true
+    docker volume rm blog-static | true
+    docker volume rm blog-media | true
     $BUILD_APP
     $MIGRATE
     ;;
