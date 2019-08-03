@@ -1,0 +1,18 @@
+dist: xenial
+language: python
+python:
+  - "3.7"
+
+services:
+  - docker
+
+install:
+  - pip install -r requirements.txt
+
+before_script: 
+  - pip install docker-compose
+  - cp .env.sample .env
+
+script:
+  - docker-compose run blog-app ./manage.py test
+  - docker-compose run blog-app flake8
