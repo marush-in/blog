@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 class Category(models.Model):
@@ -29,6 +30,13 @@ class Post(models.Model):
     is_published = models.BooleanField(verbose_name='公開', default=False)
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+
+    @property
+    def post_eyecatch(self):
+        return mark_safe(
+            '<image src="%s" style="width:100px;height:auto;"/>'
+            % self.eyecatch.url
+        )
 
     class Meta:
         verbose_name = '記事'
