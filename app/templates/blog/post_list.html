@@ -1,0 +1,4 @@
+{% for post in posts %}
+  <a href="{% url 'blog:category' post.category.slug %}">{{ post.category }}</a>
+  <a href="{% url 'blog:detail' post.slug %}">{{ post.title }}</a>
+{% endfor %}

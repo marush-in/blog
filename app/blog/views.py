@@ -19,6 +19,7 @@ class PostListByCategoryView(ListView):
     model = Post
     paginate_by = 12
     context_object_name = 'posts'
+    template_name = 'blog/post_category.html'
 
     def get_queryset(self):
         category = get_object_or_404(Category, slug=self.kwargs['slug'])
