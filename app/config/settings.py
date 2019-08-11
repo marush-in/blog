@@ -116,3 +116,10 @@ STATIC_ROOT = '/var/www/static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/media'
+
+
+# Admin Site
+ADMIN_URL = os.environ['ADMIN_URL']
+ADMIN_SITE_TITLE = 'ブログ管理画面'
+ADMIN_SITE_HEADER = 'ブログ管理画面'
+ADMIN_INDEX_TITLE = 'メニュー'

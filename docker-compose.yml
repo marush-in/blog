@@ -28,6 +28,8 @@ services:
       DATABASE_USER:     ${DATABASE_USER}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DATABASE_PORT:     ${DATABASE_PORT}
+      # Other
+      ADMIN_URL:         ${ADMIN_URL}
     depends_on: 
       - blog-postgres
     restart: always
