@@ -9,6 +9,7 @@ admin.site.index_title = settings.ADMIN_INDEX_TITLE
 
 
 urlpatterns = [
+    path('', include('blog.urls')),
     path(settings.ADMIN_URL + '/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
 ]
