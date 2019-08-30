@@ -1,0 +1,42 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{% endblock %}" />
+    <meta property="og:description" content="{% block og_description %}{% endblock %}" />
+    <meta property="og:type" content="{% block ogp_type %}{% endblock %}" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{% block og_image %}{% endblock %}" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:description" content="{% block tw_description %}{% endblock %}" />
+    <meta name="twitter:image" content="{% block tw_image %}{% endblock %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Patua+One" rel="stylesheet">
+  </head> 
+  <body>
+    <header>
+      {% block header_tag %}{% endblock %}
+    </header>
+      {% block content %}{% endblock %}
+    <footer>
+      <div>
+        <a href="https://twitter.com/marush_in" class="sns-icon" target="_blank">
+          <i class="fab fa-twitter fa-2x"></i>
+        </a>
+        <a href="https://github.com/marush-in/" class="sns-icon" target="_blank">
+          <i class="fab fa-github-alt fa-2x"></i>
+        </a>
+      </div>
+      Copyright - marushin . 2019 All Rights Reserved.
+    </footer>
+    {% block script %}{% endblock %}
+  </body>
+</html>

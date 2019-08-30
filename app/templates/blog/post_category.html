@@ -1,3 +1,23 @@
-{% for post in posts %}
-  {{ post.title }}
-{% endfor %}
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ category.name }}に関する記事一覧{% endblock %}
+{% block description %}{{ category.name }}のカテゴリーページです。{% endblock %}
+{% block og_title %}{{ category.name }}に関する記事一覧{% endblock %}
+{% block og_description %}{{ category.name }}のカテゴリーページです。{% endblock %}
+{% block ogp_type %}website{% endblock %}
+{% block tw_description %}{{ category.name }}のカテゴリーページです。{% endblock %}
+
+{% block header_tag %}<a href="/" class="alt_title">marushin Blog</a>{% endblock %}
+
+{% block content %}
+  <h1 class="categoy_title">{{ category.name }}に関する記事一覧</h1>
+  {% for post in object_list %}
+    <article>
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.description | truncatechars:105 }}</p>
+      <span>{{ post.created_at|date:"Y/m/d" }}</span>
+      <a href="{% url 'blog:detail' post.slug %}" class="article-link"></a>
+    </article>
+  {% endfor %}
+  {% include 'blog/includes/pagination.html' %}
+{% endblock %}

@@ -1,3 +1,60 @@
-{% autoescape off %}
-  {{ post.content }}
-{% endautoescape %}
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+{% block description %}{{ post.description }}{% endblock %}
+{% block og_title %}{{ post.title }}{% endblock %}
+{% block og_description %}{{ post.description }}{% endblock %}
+{% block ogp_type %}article{% endblock %}
+{% block og_image %}{% endblock %}
+{% block tw_description %}{{ post.description }}{% endblock %}
+{% block tw_image %}{% endblock %}
+
+{% block header_tag %}<a href="/" class="alt_title">marushin Blog</a>{% endblock %}
+
+{% block content %}
+  <article class="article_detail">
+    <h1 class="alt_post_title">{{ post.title }}</h1>
+    <div class="post-info">
+      <span>{{ post.created_at|date:"Y/m/d" }}</span>
+      <a href="{% url 'blog:category' post.category.slug %}" class="category_btn">
+        {{ post.category }}
+      </a>
+    </div>
+    <div>
+      {% autoescape off %}{{ post.content }}{% endautoescape %}
+    </div>
+    <div class="share_section">
+      <span class="share_span">Share Link:</span>
+      <input type="text" value="{{ request.build_absolute_uri }}" id="share_input">
+      <span class="copied_repo" id="copied_msg">Link Copied !</span>
+    </div>
+  </article>
+  <div class="btn_back_to_top_section">
+    <a href="/" class="btn_back_to_top">TOPページに戻る</a>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    'use strict';
+    var target = document.getElementById('share_input');
+    var msg = document.getElementById('copied_msg');
+
+    function copyToClip() {
+      target.addEventListener('click', function() {
+        target.style.border = '1px solid black';
+        target.select();
+        document.execCommand("Copy");
+        msg.style.display = 'inline-block';
+        setTimeout('hideMsg()', 2000);
+      });
+    }
+
+    function hideMsg() {
+      target.style.border = 'none';
+      msg.style.display = 'none';
+    }
+
+    copyToClip();
+  </script>
+{% endblock %}

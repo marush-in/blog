@@ -1,4 +1,32 @@
-{% for post in posts %}
-  <a href="{% url 'blog:category' post.category.slug %}">{{ post.category }}</a>
-  <a href="{% url 'blog:detail' post.slug %}">{{ post.title }}</a>
-{% endfor %}
+{% extends 'blog/base.html' %}
+
+{% block title %}{% endblock %}
+{% block description %}{% endblock %}
+{% block og_title %}{% endblock %}
+{% block og_description %}{% endblock %}
+{% block ogp_type %}website{% endblock %}
+{% block og_image %}{% endblock %}
+{% block tw_description %}{% endblock %}
+{% block tw_image %}{% endblock %}
+
+{% block header_tag %}
+<h1><a href="/">marushin Blog</a></h1>
+<div class="profile-section">
+  <img src="" class="profile-icon">
+  <p class="profile-intro">マルシンです。<br/>ディレクターからエンジニアに転身し、現在は主にDjangoを書いています。</p>
+  <div class="clear"></div>
+</div>
+{% endblock %}
+
+{% block content %}
+  {% for post in object_list %}
+    <article>
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.description | truncatechars:105 }}</p>
+      <span>{{ post.created_at|date:"Y/m/d" }}</span>
+      <a href="{% url 'blog:category' post.category.slug %}" class="category_btn">{{ post.category }}</a>
+      <a href="{% url 'blog:detail' post.slug %}" class="article-link"></a>
+    </article>
+  {% endfor %}
+  {% include 'blog/includes/pagination.html' %}
+{% endblock %}
