@@ -53,6 +53,7 @@ case "$1" in
     docker-compose rm -s -f -v blog-postgres
     docker volume rm blog-pgdata | true
     $MIGRATE
+    $RUN_APP ./manage.py createfactorydata
     ;;
 
   "login")
