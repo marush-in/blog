@@ -4,7 +4,7 @@ from django.db import models
 class Setting(models.Model):
     site_name = models.CharField(verbose_name='サイト名', max_length=160)
     site_description = models.TextField(verbose_name='サイトの説明', max_length=240)
-    ogp_iamge = models.ImageField(
+    ogp_image = models.ImageField(
         verbose_name='OGP画像', upload_to='uploads/', max_length=320, blank=True
     )
     profile_icon = models.ImageField(

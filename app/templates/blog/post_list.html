@@ -1,19 +1,21 @@
 {% extends 'blog/base.html' %}
 
-{% block title %}{% endblock %}
-{% block description %}{% endblock %}
-{% block og_title %}{% endblock %}
-{% block og_description %}{% endblock %}
+{% block title %}{{ setting.site_name }}{% endblock %}
+{% block description %}{{ setting.site_description }}{% endblock %}
+{% block og_title %}{{ setting.site_name }}{% endblock %}
+{% block og_description %}{{ setting.site_description }}{% endblock %}
 {% block ogp_type %}website{% endblock %}
-{% block og_image %}{% endblock %}
-{% block tw_description %}{% endblock %}
-{% block tw_image %}{% endblock %}
+{% block og_image %}{{ request.get_host }}{{ setting.ogp_image.url }}{% endblock %}
+{% block tw_description %}{{ setting.site_description }}{% endblock %}
+{% block tw_image %}{{ request.get_host }}{{ setting.ogp_image.url }}{% endblock %}
 
 {% block header_tag %}
-<h1><a href="/">marushin Blog</a></h1>
+<h1><a href="/">{{ setting.site_name }}</a></h1>
 <div class="profile-section">
-  <img src="" class="profile-icon">
-  <p class="profile-intro">マルシンです。<br/>ディレクターからエンジニアに転身し、現在は主にDjangoを書いています。</p>
+  <img src="{{ setting.profile_icon.url }}" class="profile-icon">
+  <p class="profile-intro">
+    {% autoescape off %}{{ setting.profile_info }}{% endautoescape %}
+  </p>
   <div class="clear"></div>
 </div>
 {% endblock %}
