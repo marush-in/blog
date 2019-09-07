@@ -1,3 +1,4 @@
+from django.contrib.sitemaps import ping_google
 from django.db import models
 from django.utils.safestring import mark_safe
 
@@ -44,3 +45,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        try:
+            ping_google()
+        except Exception:
+            pass

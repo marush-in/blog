@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'django_summernote',
     'blog.apps.BlogConfig',
     'common.apps.CommonConfig',
@@ -123,6 +124,9 @@ ADMIN_URL = os.environ['ADMIN_URL']
 ADMIN_SITE_TITLE = 'ブログ管理画面'
 ADMIN_SITE_HEADER = 'ブログ管理画面'
 ADMIN_INDEX_TITLE = 'メニュー'
+
+
+SITE_ID = 1
 
 
 # Logging
