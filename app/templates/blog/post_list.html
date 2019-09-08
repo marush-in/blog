@@ -10,14 +10,18 @@
 {% block tw_image %}{{ request.get_host }}{{ setting.ogp_image.url }}{% endblock %}
 
 {% block header_tag %}
-<h1><a href="/">{{ setting.site_name }}</a></h1>
-<div class="profile-section">
-  <img src="{{ setting.profile_icon.url }}" class="profile-icon">
-  <p class="profile-intro">
-    {% autoescape off %}{{ setting.profile_info }}{% endautoescape %}
-  </p>
-  <div class="clear"></div>
-</div>
+  {% if setting.site_name %}
+    <h1><a href="/">{{ setting.site_name }}</a></h1>
+  {% endif %}
+  {% if setting.profile_info %}
+    <div class="profile-section">
+      <img src="{{ setting.profile_icon.url }}" class="profile-icon">
+      <p class="profile-intro">
+        {% autoescape off %}{{ setting.profile_info }}{% endautoescape %}
+      </p>
+      <div class="clear"></div>
+    </div>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
