@@ -9,15 +9,13 @@ DOWN_APP="docker-compose down"
 
 case "$1" in
   "init")
-    if [ ! -e '.env' ]; then
-      cp .env.sample .env
-    fi
     docker-compose down -v
     docker volume rm blog-pgdate | true
     docker volume rm blog-static | true
     docker volume rm blog-media | true
     $BUILD_APP
     $MIGRATE
+    $RUN_APP ./manage.py createfactorydata
     ;;
   
   "up")
