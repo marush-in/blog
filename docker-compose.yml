@@ -20,20 +20,7 @@ services:
       - static:/var/www/static
       - media:/var/www/media
     environment:
-      DEBUG: '${DEBUG}'
       PYTHONDONTWRITEBYTECODE: 1
-      # Database
-      DATABASE_HOST:     blog-postgres
-      DATABASE_NAME:     ${DATABASE_NAME}
-      DATABASE_USER:     ${DATABASE_USER}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      DATABASE_PORT:     ${DATABASE_PORT}
-      # Other
-      ADMIN_URL:               ${ADMIN_URL}
-      AWS_ACCESS_KEY_ID:       ${AWS_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY:   ${AWS_SECRET_ACCESS_KEY}
-      AWS_STORAGE_BUCKET_NAME: ${AWS_STORAGE_BUCKET_NAME}
-      AWS_S3_REGION_NAME:      ${AWS_S3_REGION_NAME}
     depends_on: 
       - blog-postgres
     restart: always

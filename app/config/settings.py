@@ -1,20 +1,17 @@
+import environ
 import os
-import raven
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+# Env settings
+env = environ.Env()
+env.read_env('.env')
+
+
+# Base settings
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_+d=tid98pl0ko-4#m&8=c=dluyqujpr391i4kxlj*g60d+%7y'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'false') == 'true'
-
-ALLOWED_HOSTS = []
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -71,11 +68,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
-        'NAME': os.environ['DATABASE_NAME'],
-        'USER': os.environ['DATABASE_USER'],
-        'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'PORT': os.environ['DATABASE_PORT'],
+        'HOST': env('DATABASE_HOST'),
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
 
@@ -122,7 +119,7 @@ MEDIA_ROOT = '/var/www/media'
 
 
 # Admin Site
-ADMIN_URL = os.environ['ADMIN_URL']
+ADMIN_URL = env('ADMIN_URL')
 ADMIN_SITE_TITLE = 'ブログ管理画面'
 ADMIN_SITE_HEADER = 'ブログ管理画面'
 ADMIN_INDEX_TITLE = 'メニュー'
@@ -166,18 +163,8 @@ LOGGING = {
 
 # AWS S3
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-AWS_S3_REGION_NAME = os.environ.get('AWS_DEFAULT_REGION', 'ap-northeast-1')
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 AWS_AUTO_CREATE_BUCKET = True
-
-
-# Sentry
-SENTRY_DSN = os.environ.get('SENTRY_DSN')
-if SENTRY_DSN:
-    INSTALLED_APPS += ['raven.contrib.django.raven_compat']
-    RAVEN_CONFIG = {
-        'dsn': SENTRY_DSN,
-        'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
-    }
