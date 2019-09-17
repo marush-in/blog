@@ -1,4 +1,5 @@
 import os
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -170,3 +171,13 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_S3_REGION_NAME = os.environ.get('AWS_DEFAULT_REGION', 'ap-northeast-1')
 AWS_AUTO_CREATE_BUCKET = True
+
+
+# Sentry
+SENTRY_DSN = os.environ.get('SENTRY_DSN')
+if SENTRY_DSN:
+    INSTALLED_APPS += ['raven.contrib.django.raven_compat']
+    RAVEN_CONFIG = {
+        'dsn': SENTRY_DSN,
+        'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+    }
