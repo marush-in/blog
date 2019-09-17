@@ -9,7 +9,7 @@ env.read_env('.env')
 
 # Base settings
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = '_+d=tid98pl0ko-4#m&8=c=dluyqujpr391i4kxlj*g60d+%7y'
 DEBUG = env('DEBUG')
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
