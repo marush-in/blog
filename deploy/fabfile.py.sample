@@ -17,4 +17,5 @@ def deploy(branch):
         with cd('app'):
             run('python3 ./manage.py collectstatic --no-input')
             run('python3 ./manage.py migrate')
+        run('sudo systemctl restart django.service')
         run('sudo systemctl restart nginx')
