@@ -11,6 +11,7 @@ install:
 
 before_script: 
   - pip install docker-compose
+  - cd app
   - cp .env.sample .env
 
 script:
