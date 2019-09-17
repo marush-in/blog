@@ -1,0 +1,20 @@
+from fabric.api import cd, env, run
+
+
+def production(branch='master'):
+    env.user =
+    env.hosts = []
+    env.key_filename =
+
+    deploy(branch)
+
+
+def deploy(branch):
+    with cd('blog'):
+        run('git pull')
+        run('git checkout {}'.format(branch))
+        run('pip install --user -r requirements.txt')
+        with cd('app'):
+            run('python3 ./manage.py collectstatic --no-input')
+            run('python3 ./manage.py migrate')
+        run('sudo systemctl restart nginx')

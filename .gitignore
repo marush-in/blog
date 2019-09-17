@@ -108,3 +108,6 @@ venv.bak/
 
 # vscode
 .vscode/
+
+# fabric
+fabfile.py
