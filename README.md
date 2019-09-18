@@ -76,3 +76,15 @@ app内に.envファイルを作成し、必要情報を入力する
 ```
 ./operate test
 ```
+
+## デプロイ
+
+`Fabric` でのデプロイ方法　　
+
+deployフォルダ内のfabfile.py.sampleをfabfile.pyに変更し、必要情報を入力する
+
+・デプロイコマンド
+```
+cd deploy
+fab production
+```
