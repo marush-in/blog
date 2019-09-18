@@ -8,9 +8,9 @@
 
 - Docker で使用するバージョン一覧
 
-|Python|Postgresql|
+|Python(alpine)|Postgresql|
 |:-|:-|
-|3.7(alpine)|11.0|
+|3.7|11.0|
 
 ## コマンド一覧
 
