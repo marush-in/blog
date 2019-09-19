@@ -4,9 +4,17 @@
 
 # 開発環境
 
-※ Dockerを立ち上げる
+## 構成
+
+- Docker で使用するバージョン一覧
+
+|Python(alpine)|Postgresql|
+|:-|:-|
+|3.7|11.0|
 
 ## コマンド一覧
+
+※ Dockerを立ち上げる
 
 ・開発環境の構築
 ```
@@ -67,4 +75,16 @@ app内に.envファイルを作成し、必要情報を入力する
 ・テストを実行する
 ```
 ./operate test
+```
+
+## デプロイ
+
+`Fabric` でのデプロイ方法　　
+
+deployフォルダ内のfabfile.py.sampleをfabfile.pyに変更し、必要情報を入力する
+
+・デプロイコマンド
+```
+cd deploy
+fab production
 ```
