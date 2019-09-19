@@ -19,62 +19,62 @@
 ・開発環境の構築
 ```
 app内に.envファイルを作成し、必要情報を入力する
-./operate init
+./command init
 ```
 
 ・開発環境を起動する
 ```
-./operate up
+./command up
 ```
 
 ・開発環境を停止する
 ```
-./operate down
+./command down
 ```
 
 ・開発環境を再起動する
 ```
-./operate restart
+./command restart
 ```
 
 ・DBを初期化する
 ```
-./operate initdb
+./command initdb
 ```
 
 ・アプリケーションのコンテナに入る
 ```
-./operate login
+./command login
 ```
 
 ・Postgresqlのシェルにログインする
 ```
-./operate postgres
+./command postgres
 ```
 
 ・管理ユーザーを作成する
 ```
-./operate createsuperuser
+./command createsuperuser
 ```
 
 ・マイグレーションファイルを作成する
 ```
-./operate makemigrations
+./command makemigrations
 ```
 
 ・マイグレーションファイルをDBに適用する
 ```
-./operate migrate
+./command migrate
 ```
 
 ・文法を確認する
 ```
-./operate flake8
+./command flake8
 ```
 
 ・テストを実行する
 ```
-./operate test
+./command test
 ```
 
 ## デプロイ
