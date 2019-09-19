@@ -38,7 +38,7 @@ class PostDetailTests(TestCase):
     def test_get(self):
         """getで通常のアクセスを行う"""
         category = PostCategoryFactory()
-        post = PostFactory(category=category, eyecatch=None)
+        post = PostFactory(category=category)
         response = self.client.get(
             reverse('blog:detail', kwargs={'slug': post.slug}),
         )
