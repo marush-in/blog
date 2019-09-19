@@ -1,7 +1,8 @@
-from fabric.api import cd, env, run
+from fabric.api import cd, env, run, sudo
 
 
 def production(branch='master'):
+    """本番環境"""
     env.user =
     env.hosts = []
     env.key_filename =
@@ -10,6 +11,7 @@ def production(branch='master'):
 
 
 def deploy(branch):
+    """デプロイする"""
     with cd('blog'):
         run('git pull')
         run('git checkout {}'.format(branch))
@@ -17,5 +19,5 @@ def deploy(branch):
         with cd('app'):
             run('python3 ./manage.py collectstatic --no-input')
             run('python3 ./manage.py migrate')
-        run('sudo systemctl restart django.service')
-        run('sudo systemctl restart nginx')
+        sudo('systemctl restart django.service')
+        sudo('systemctl restart nginx')
