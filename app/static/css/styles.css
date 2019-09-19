@@ -93,6 +93,17 @@ article h5 {
   font-size: 1.17em;
 }
 
+.post-section a {
+  border-bottom:1px solid #000000;
+}
+
+.post-section a:hover{
+  background-color: #020CF2;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
+
 .highlight {
   background-color: #eee;;
   padding: 15px 20px;
