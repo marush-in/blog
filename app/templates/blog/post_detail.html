@@ -5,9 +5,9 @@
 {% block og_title %}{{ post.title }}{% endblock %}
 {% block og_description %}{{ post.description }}{% endblock %}
 {% block ogp_type %}article{% endblock %}
-<!-- {% block og_image %}{{ post.eyecatch.url }}{% endblock %} -->
+{% block og_image %}{% if post.eyecatch %}{{ post.eyecatch.url }}{% endif %}{% endblock %}
 {% block tw_description %}{{ post.description }}{% endblock %}
-<!-- {% block tw_image %}{{ post.eyecatch.url }}{% endblock %} -->
+{% block tw_image %}{% if post.eyecatch %}{{ post.eyecatch.url }}{% endif %}{% endblock %}
 
 {% block header_tag %}<a href="/" class="alt_title">{{ setting.site_name }}</a>{% endblock %}
 
