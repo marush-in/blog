@@ -19,11 +19,6 @@ class PostFactory(DjangoModelFactory):
     description = Faker('sentence')
     slug = FuzzyText(length=15)
     category = factory.Iterator(Category.objects.all())
-    eyecatch = factory.django.ImageField(
-        color='red',
-        height=630,
-        width=1200,
-    )
     content = FuzzyText(length=2000)
     is_published = True
 
