@@ -20,7 +20,7 @@ class PostAdmin(SummernoteModelAdmin):
         models.TextField: {'widget': Textarea(attrs={'rows': 6, 'cols': 100})},
     }
     list_display = (
-        'id', 'title', 'slug', 'is_published', 'post_eyecatch', 'created_at',
+        'id', 'title', 'slug', 'is_published', 'created_at',
     )
     list_display_links = ['title']
     list_editable = ['is_published']
